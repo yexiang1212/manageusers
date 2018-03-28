@@ -1,0 +1,114 @@
+1.创建我们的项目 manageusers
+  D:\AngularStudy\manageusers
+
+  ng new manageusers
+
+  
+2.为我们刚刚的项目添加bootstrap 和 jquery框架
+
+ 安装 bootstrap 的3.3.7版本：npm install bootstrap@3.3.7 --save（注意：最后安装这个版本，4.0.0样式和其不一致）
+
+ 卸载 bootstrap npm uninstall bootstrap --save
+
+ 安装 jQuery 的2.2.3 版本：npm install jquery@2.2.3 --save
+ 
+ 安装 Tether ：npm install tether --save 
+
+ 我们在node_modules中可以看到 bootstrap文件夹和 jquery文件夹
+
+ 在 package.json文件中可以看到我们安装的模块的版本号
+
+
+3.配置bootstrap和jquery
+
+  
+  进入：D:\AngularStudy\manageusers\node_modules\bootstrap\dist\css\bootstrap.css
+  右键拷贝路径
+
+  进入：D:\AngularStudy\manageusers\node_modules\bootstrap\dist\js\bootstrap.min.js
+  右键拷贝路径
+
+   进入：D:\AngularStudy\manageusers\node_modules\jquery\dist\jquery.min.js
+   拷贝路径
+
+   配置 tether
+   D:\AngularStudy\manageusers\node_modules\tether\dist\js\tether.min.js
+
+
+4. 我们来到 .angular-cli.json 文件 引入上面的配置文件
+
+"styles": [
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/tether/dist/js/tether.min.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+      ],
+ 
+注意：配置完  .angular-cli.json  一定要重启下服务才能看见效果
+
+5.在app.compontent.html中确认下bootstrap是否有效
+
+<div class="container">
+  	<button type="button" class="btn btn-default">默认按钮</button>
+	
+</div>
+
+6.我们安装我们需要用到的组件
+
+ ng g c components/home
+ ng g c components/users
+ ng g c components/userDetail
+ ng g c components/addUser
+ ng g c components/editUser
+ ng g c components/navbar
+ ng g c components/sidebar
+ ng g c components/login
+ ng g c components/register
+ ng g c components/settings
+ ng g c components/pageNotFound
+
+7.在app.module中配置路由
+
+ import { RouterModule, Routes } from '@angular/router';
+
+ const appRoutes: Routes = [
+  { path: "", component: HomeComponent },
+  { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent }
+  ];
+
+ imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
+  ],
+
+8.app.component 设置路由出口
+
+<app-navbar></app-navbar>
+<div class="container">
+  	<router-outlet></router-outlet>  
+</div>
+
+9.设计navbar.html页面
+
+ <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  	<div class="container">
+  		<div class="navbar-brand">
+  			用户管理系统
+  		</div>
+  		<div id="navbar" >
+  			<ul class="nav navbar-nav">
+  				<li><a href="#" routerLink="/">主页</a></li>
+  				<li><a href="#" routerLink="/register">注册</a></li>
+  				<li><a href="#" routerLink="/login">登录</a></li>
+  			</ul>
+  		</div>
+  	</div>
+  </nav>
+
+
+
+
